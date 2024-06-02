@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CreditCard } from 'src/app/models/credit-card';
 import { CreditcardsService } from 'src/app/services/creditcards.service';
 @Component({
@@ -8,6 +9,8 @@ import { CreditcardsService } from 'src/app/services/creditcards.service';
   styleUrls: ['./add.component.scss']
 })
 export class AddComponent {
+
+  private subscription: Subscription | undefined;
 
   constructor(private creditcardsService: CreditcardsService,
     private router: Router) {
@@ -29,10 +32,15 @@ export class AddComponent {
   }
 
   saveCreditCard(){
-    console.log("Form Submitted");
-    this.creditcardsService.createCreditCard(this.newCreditCard).subscribe(data => {alert("Credit Card Added");
+    this.subscription = this.creditcardsService.createCreditCard(this.newCreditCard).subscribe(data => {alert("Credit Card Added");
     this.router.navigate(['creditcards']);
   })
 }
+
+  ngOnDestroy(){
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
+  }
 
 }

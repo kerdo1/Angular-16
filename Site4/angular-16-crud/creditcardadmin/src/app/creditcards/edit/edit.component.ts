@@ -64,12 +64,20 @@ export class EditComponent {
       this.creditCardsService.updateCreditCard(updatedFormData)
       .pipe(takeUntil(this.destroy$))
       .subscribe(()=> {
+        this.showSuccessMessage("Credit Card Updated Successfully");
       })
     }
   }
 
+  showSuccessMessage(message: string){
+    this.snackBar.open(message, 'Close', {
+      duration: 3000
+    })
+  }
 
-
-
+  ngOnDestory(){
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
 }

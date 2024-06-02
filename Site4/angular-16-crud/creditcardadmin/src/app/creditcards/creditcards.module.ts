@@ -21,6 +21,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     RouterModule,
     MatButtonModule,
-    MatNativeDateModule  
+    MatNativeDateModule,
+    ReactiveFormsModule  
   ]
 })
 export class CreditcardsModule { }
